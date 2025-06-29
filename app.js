@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const Listing = require('./models/listing.js');
+const path = require('path');
 
 // Connect with DB
 const MONGO_URL = "mongodb://localhost:27017/test";
@@ -17,10 +18,6 @@ async function main() {
 }
 
 //Routes
-app.get('/', (req,res) =>{
-    res.send('Hello Root');
-})
-
 // app.get('/testListing',async (req,res) =>{
 //     let sampleListing = new Listing({
 //         title: 'My New Villa',
@@ -33,11 +30,14 @@ app.get('/', (req,res) =>{
 //     console.log('Listing saved');
 //     res.send('Listing saved successfully');
 // })
+app.get('/', (req,res) =>{
+    res.send('Hello Root');
+})
 
-app.get('/listings', (req,res) =>{
-    Listing.find({}).then(res =>{
-        console.log(res);
-    })
+
+app.get('/listings', async (req,res) =>{
+    const allListings = await Listing.find({});
+    res.render("index.ejs", {allListings});
 })
 
 app.listen(8080, () =>{
