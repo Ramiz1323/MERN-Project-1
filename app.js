@@ -21,17 +21,23 @@ app.get('/', (req,res) =>{
     res.send('Hello Root');
 })
 
-app.get('/testListing',async (req,res) =>{
-    let sampleListing = new Listing({
-        title: 'My New Villa',
-        description: 'by the sea',
-        price: 5000,
-        location: 'Madrid',
-        country: 'Spain'
+// app.get('/testListing',async (req,res) =>{
+//     let sampleListing = new Listing({
+//         title: 'My New Villa',
+//         description: 'by the sea',
+//         price: 5000,
+//         location: 'Madrid',
+//         country: 'Spain'
+//     })
+//     await sampleListing.save();
+//     console.log('Listing saved');
+//     res.send('Listing saved successfully');
+// })
+
+app.get('/listings', (req,res) =>{
+    Listing.find({}).then(res =>{
+        console.log(res);
     })
-    await sampleListing.save();
-    console.log('Listing saved');
-    res.send('Listing saved successfully');
 })
 
 app.listen(8080, () =>{
