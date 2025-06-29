@@ -17,6 +17,10 @@ async function main() {
     await mongoose.connect(MONGO_URL);
 }
 
+//ejs Setup
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views/listings"));
+
 //Routes
 // app.get('/testListing',async (req,res) =>{
 //     let sampleListing = new Listing({
