@@ -4,6 +4,10 @@ const mongoose = require('mongoose');
 const Listing = require('./models/listing.js');
 const path = require('path');
 
+app.listen(8080, () =>{
+    console.log('Server is running on port 8080');
+})
+
 // Connect with DB
 const MONGO_URL = "mongodb://localhost:27017/test";
 
@@ -20,6 +24,7 @@ async function main() {
 //ejs Setup
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views/listings"));
+app.use(express.urlencoded({extended: true}));
 
 //Routes
 // app.get('/testListing',async (req,res) =>{
@@ -38,12 +43,13 @@ app.get('/', (req,res) =>{
     res.send('Hello Root');
 })
 
-
-app.get('/listings', async (req,res) =>{
+app.get('/listings', async (req,res) =>{   //Index Route
     const allListings = await Listing.find({});
     res.render("index.ejs", {allListings});
 })
 
-app.listen(8080, () =>{
-    console.log('Server is running on port 8080');
-})
+
+app.get('/listings/:id', async (req,res) =>{   //Show Route
+    let {id} = req.params;
+    const listing = await Listing.findById({id})
+});
