@@ -39,6 +39,7 @@ app.use(express.urlencoded({extended: true}));
 //     console.log('Listing saved');
 //     res.send('Listing saved successfully');
 // })
+
 app.get('/', (req,res) =>{
     res.send('Hello Root');
 })
