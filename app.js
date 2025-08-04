@@ -49,8 +49,17 @@ app.get('/listings', async (req,res) =>{   //Index Route
     res.render("index.ejs", {allListings});
 });
 
+app.get('/listings/new', (req,res) =>{   //New Route
+    res.render("new.ejs");
+})
+
 app.get('/listings/:id', async (req,res) =>{   //Show Route
     let {id} = req.params;
     const listing = await Listing.findById(id);
     res.render("show.ejs", { listing });
+});
+
+app.get('/listings', async (req, res)=>{ //Create new listing
+    let listing = req.body.listing;
+    console.log(listing);
 });
