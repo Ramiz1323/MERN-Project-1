@@ -42,15 +42,15 @@ app.use(express.urlencoded({extended: true}));
 
 app.get('/', (req,res) =>{
     res.send('Hello Root');
-})
+});
 
 app.get('/listings', async (req,res) =>{   //Index Route
     const allListings = await Listing.find({});
     res.render("index.ejs", {allListings});
-})
+});
 
 app.get('/listings/:id', async (req,res) =>{   //Show Route
     let {id} = req.params;
-    const listing = await Listing.findById({id})
+    const listing = await Listing.findById(id);
     res.render("show.ejs", { listing });
 });
