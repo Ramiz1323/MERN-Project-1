@@ -44,14 +44,15 @@ app.get('/', (req,res) =>{
     res.send('Hello Root');
 });
 
-app.get('/listings', async (req,res) =>{   //Index Route
+app.get('/listings', async (req,res) =>{        //Index Route
     const allListings = await Listing.find({});
     res.render("index.ejs", {allListings});
 });
 
-app.get('/listings/new', (req,res) =>{   //New Route
+app.get('/listings/new', (req,res) =>{          //New Route
     res.render("new.ejs");
-})
+});
+
 
 app.get('/listings/:id', async (req,res) =>{   //Show Route
     let {id} = req.params;
@@ -59,7 +60,10 @@ app.get('/listings/:id', async (req,res) =>{   //Show Route
     res.render("show.ejs", { listing });
 });
 
-app.get('/listings', async (req, res)=>{ //Create new listing
-    let listing = req.body.listing;
-    console.log(listing);
+
+app.post('/listings', async (req, res)=>{       //Create new listing
+    const newListing = new Listing(req.body.listing);
+    await newListing.save();
+    res.redirect('/listings');
+    console.log(newListing);
 });
