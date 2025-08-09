@@ -64,6 +64,11 @@ app.get('/listings/:id', async (req,res) =>{   //Show Route
 app.post('/listings', async (req, res)=>{       //Create new listing
     const newListing = new Listing(req.body.listing);
     await newListing.save();
-    console.log(newListing);
     res.redirect('/listings');
 });
+
+app.get('/listings/:id/edit', async (req,res) =>{   //Edit Route
+    let {id} = req.params;
+    const listing = await Listing.findById(id);
+    res.render("edit.ejs", { listing });
+})
