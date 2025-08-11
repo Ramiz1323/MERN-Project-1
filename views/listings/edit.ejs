@@ -8,13 +8,13 @@
 <body>
     <h3>Edit your listing</h3>
     <form>
-        <input type="text" name="listing[title]" placeholder="Title">
+        <input type="text" name="listing[title]" value="<%= listing.title %>" placeholder="Title">
         <br>
         <br>
         <textarea name="listing[description]" placeholder="Description"></textarea>
         <br>
         <br>
-        <input type="text" placeholder="Enter Image URL" name="listing[image]">
+        <input type="text" value="<%= listing.image %>" name="listing[image]">
         <br>
         <br>
         <input type="Number" name="listing[price]" placeholder="Price">
