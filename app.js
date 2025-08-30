@@ -4,6 +4,10 @@ const mongoose = require('mongoose');
 const Listing = require('./models/listing.js');
 const path = require('path');
 const methodOverride = require('method-override');
+const ejsMate = require('ejs-mate');
+
+// ejs-mate setup
+app.engine('ejs', ejsMate);
 
 app.listen(8080, () =>{
     console.log('Server is running on port 8080');
@@ -79,4 +83,11 @@ app.put('/listings/:id', async (req,res) =>{   //Update Route
     let {id} = req.params;
     await Listing.findByIdAndUpdate(id, req.body.listing);
     res.redirect('/listings/' + id);
+})
+
+app.delete('/listings/:id', async (req,res) =>{   //Delete Route
+    let {id} = req.params;
+    let deletedLisitng = await Listing.findByIdAndDelete(id);
+    console.log(deletedLisitng.title + " is deleted");
+    res.redirect('/listings');   
 })
