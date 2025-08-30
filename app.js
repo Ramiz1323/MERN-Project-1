@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 const Listing = require('./models/listing.js');
 const path = require('path');
+const methodOverride = require('method-override');
 
 app.listen(8080, () =>{
     console.log('Server is running on port 8080');
@@ -25,6 +26,7 @@ async function main() {
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views/listings"));
 app.use(express.urlencoded({extended: true}));
+app.use(methodOverride('_method'));
 
 //Routes
 // app.get('/testListing',async (req,res) =>{
@@ -71,5 +73,10 @@ app.get('/listings/:id/edit', async (req,res) =>{   //Edit Route
     let {id} = req.params;
     const listing = await Listing.findById(id);
     res.render("edit.ejs", { listing });
-    
+})
+
+app.put('/listings/:id', async (req,res) =>{   //Update Route
+    let {id} = req.params;
+    await Listing.findByIdAndUpdate(id, req.body.listing);
+    res.redirect('/listings/' + id);
 })
