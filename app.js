@@ -31,6 +31,8 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views/listings"));
 app.use(express.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
+app.use("ejs", ejsMate);
+app.use(express.static(path.join(__dirname, 'public')));
 
 //Routes
 // app.get('/testListing',async (req,res) =>{
