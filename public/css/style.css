@@ -558,6 +558,10 @@ video {
   visibility: collapse;
 }
 
+.static {
+  position: static;
+}
+
 .mb-4 {
   margin-bottom: 1rem;
 }
@@ -593,9 +597,9 @@ video {
   padding-top: 1rem;
 }
 
-.text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
 }
 
 .font-bold {

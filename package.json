@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrently \"npm run build-css\" \"nodemon app.js\"",
-    "build-css": "tailwindcss -i ./src/style.css -o ./public/css/style.css --watch --poll"
+    "build-css": "tailwindcss -i ./src/style.css -o ./public/css/style.css --watch --poll 1000"
   },
   "keywords": [],
   "author": "",
