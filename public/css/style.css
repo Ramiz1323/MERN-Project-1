@@ -562,6 +562,14 @@ video {
   position: static;
 }
 
+.sticky {
+  position: sticky;
+}
+
+.top-0 {
+  top: 0px;
+}
+
 .mb-4 {
   margin-bottom: 1rem;
 }
@@ -604,6 +612,11 @@ video {
 
 .font-bold {
   font-weight: 700;
+}
+
+.\!text-\[\#000000\] {
+  --tw-text-opacity: 1 !important;
+  color: rgb(0 0 0 / var(--tw-text-opacity, 1)) !important;
 }
 
 .text-white {
