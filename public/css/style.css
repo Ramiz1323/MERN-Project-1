@@ -578,6 +578,10 @@ video {
   display: flex;
 }
 
+.h-80 {
+  height: 20rem;
+}
+
 .\!w-full {
   width: 100% !important;
 }
@@ -686,6 +690,10 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.\!no-underline {
+  text-decoration-line: none !important;
 }
 
 .no-underline {
