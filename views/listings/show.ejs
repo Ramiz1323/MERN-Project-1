@@ -1,20 +1,74 @@
 <% layout("../layouts/boilerplate.ejs") %>
 <body>
-    <h3>Listing Details : </h3>
-    <ul>
-        <li><%= listing.title %></li>
-        <li><%= listing.description %></li>
-        <li>&#8377; <%= listing.price.toLocaleString("en-IN") %></li>
-        <li><%= listing.location %></li>
-        <li><%= listing.country %></li>
-    </ul>
-    <br>
-    <a href="/listings/<%= listing._id %>/edit">Edit</a>
+  <div class="w-[90%] m-auto">
+    <h3 class="py-3 text-2xl font-bold text-gray-800 border-b pb-2 mb-4">Listing Details</h3>
+    
+    <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Listing Image -->
+        <div class="rounded-lg overflow-hidden">
+          <img 
+            src="<%= listing.image || 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80' %>" 
+            alt="<%= listing.title %>"
+            class="md:w-[80%] w-full h-[23rem] object-cover rounded-lg"
+          >
+        </div>
+        
+        <!-- Listing Details -->
+        <div>
+          <h2 class="text-2xl font-bold text-gray-800 mb-3"><%= listing.title %></h2>
+          <p class="text-gray-600 mb-4"><%= listing.description %></p>
+          
+          <div class="space-y-8 md:space-y-10">
+            <div class="flex items-center">
+              <span class="bg-blue-100 text-blue-800 p-2 rounded-lg mr-3">
+                <i class="fas fa-tag"></i>
+              </span>
+              <div>
+                <p class="text-sm text-gray-500 !mb-0">Price</p>
+                <p class="text-xl font-bold text-green-700 !mb-0">&#8377; <%= listing.price.toLocaleString("en-IN") %></p>
+              </div>
+            </div>
+            
+            <div class="flex items-center">
+              <span class="bg-blue-100 text-blue-800 p-2 rounded-lg mr-3">
+                <i class="fas fa-map-marker-alt"></i>
+              </span>
+              <div>
+                <p class="text-sm text-gray-500 !mb-0">Location</p>
+                <p class="text-gray-800 !mb-0"><%= listing.location %></p>
+              </div>
+            </div>
+            
+            <div class="flex items-center">
+              <span class="bg-blue-100 text-blue-800 p-2 rounded-lg mr-3">
+                <i class="fas fa-globe"></i>
+              </span>
+              <div>
+                <p class="text-sm text-gray-500 !mb-0">Country</p>
+                <p class="text-gray-800 !mb-0"><%= listing.country %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <br><br>
+    <!-- Action Buttons -->
+    <div class="flex flex-col md:flex-row gap-4">
+      <a 
+        href="/listings/<%= listing._id %>/edit" 
+        class="btn btn-primary flex items-center justify-center gap-2"
+      >
+        <i class="fas fa-edit"></i> Edit Listing
+      </a>
 
-    <form action="/listings/<%= listing._id %>?_method=DELETE" method="POST">
-        <Button>Delete</Button>
-    </form>
+      <form action="/listings/<%= listing._id %>?_method=DELETE" method="POST" class="w-full md:w-auto">
+        <button class="btn btn-danger w-full flex items-center justify-center gap-2">
+          <i class="fas fa-trash"></i> Delete Listing
+        </button>
+      </form>
+    </div>
+  </div>
 
 </body>

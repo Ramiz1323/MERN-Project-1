@@ -2,22 +2,20 @@
 
 <div class="w-[90%] m-auto">
   <h2 class="mb-4">All Listings</h2>
-  <!-- <form action="/listings/new" method="GET">
-        <button class="bg-black text-white font-bold py-2 px-2 rounded">Create New Listing</button>
-    </form> -->
+  <!-- All Listings -->
   <div class="flex flex-wrap gap-[15px]">
     <% for (let listing of allListings) { %>
     <a
       href="/listings/<%= listing.id %>"
-      class="!no-underline !p-0 !w-[28rem] md:!w-[20rem]"
+      class="!no-underline !p-0 !w-[28rem] md:!w-[20rem] rounded-lg shadow-md mb-6"
     >
       <div class="card col !border-none !mb-10">
         <img
           src="<%= listing.image %>"
-          class="card-img-top rounded-md !w-full !object-cover h-80"
+          class="card-img-top !w-full !object-cover h-80 !p-2"
           alt="listing_image"
         />
-        <div class="card-body !p-0 !mt-2">
+        <div class="card-body !px-6  !py-2 !mt-2">
           <p class="card-text">
             <%= listing.title %><br />
             &#8377; <%= listing.price.toLocaleString("en-IN") %> / night <br />
