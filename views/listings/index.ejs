@@ -1,29 +1,34 @@
 <% layout("../layouts/boilerplate.ejs") %>
 
-<h2>All Listings</h2>
-<!-- <form action="/listings/new" method="GET">
+<div class="w-[90%] m-auto">
+  <h2 class="mb-4">All Listings</h2>
+  <!-- <form action="/listings/new" method="GET">
         <button class="bg-black text-white font-bold py-2 px-2 rounded">Create New Listing</button>
     </form> -->
-<div class="row row-cols-1 row-cols-md-3 row-cols-xl-4 row-cols-xxl-5 gap-18">
-  <% for (let listing of allListings) { %>
-  <a href="/listings/<%= listing.id %>" class="!no-underline">
-    <div class="card col !border-none !mb-10">
-      <img
-        src="<%= listing.image %>"
-        class="card-img-top rounded-md !w-full !object-cover h-80"
-        alt="listing_image"
-      />
-      <div class="card-body !p-0">
-        <p class="card-text">
-          <%= listing.title %><br />
-          &#8377; <%= listing.price.toLocaleString("en-IN") %> / night <br />
-          <i class="fa-solid fa-location-dot"></i> <%= listing.location %>,
-          <%=listing.country %>
-        </p>
+  <div class="flex flex-wrap gap-[15px]">
+    <% for (let listing of allListings) { %>
+    <a
+      href="/listings/<%= listing.id %>"
+      class="!no-underline !p-0 !w-[28rem] md:!w-[20rem]"
+    >
+      <div class="card col !border-none !mb-10">
+        <img
+          src="<%= listing.image %>"
+          class="card-img-top rounded-md !w-full !object-cover h-80"
+          alt="listing_image"
+        />
+        <div class="card-body !p-0 !mt-2">
+          <p class="card-text">
+            <%= listing.title %><br />
+            &#8377; <%= listing.price.toLocaleString("en-IN") %> / night <br />
+            <i class="fa-solid fa-location-dot"></i> <%= listing.location %>,
+            <%=listing.country %>
+          </p>
+        </div>
       </div>
-    </div>
-    <% } %>
-  </a>
+      <% } %>
+    </a>
+  </div>
 </div>
 
 <!-- <ul>
